@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="data/Percentoverage45_1.js"></script>
+        <script src="data/Genderidentity_2.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[45.56247669220552,-122.80928865101149],[45.73059089760133,-122.40914828611628]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
+        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'feet',
+            secondaryLengthUnit: 'miles',
+            primaryAreaUnit: 'sqfeet',
+            secondaryAreaUnit: 'sqmiles'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        var layer_mapbox_0 = L.tileLayer('https://api.mapbox.com/styles/v1/ermcginty/cjsjbgp3z2kx61fnzjaf3yqas/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiZXJtY2dpbnR5IiwiYSI6ImNqc2piZGt2ajEzM3A0NnF6c3l4azNwdDAifQ.UxGny4Deo3W9v1M7qXzfFA', {
+            opacity: 1.0,
+            attribution: '',
+        });
+        layer_mapbox_0;
+        map.addLayer(layer_mapbox_0);
+        function pop_Percentoverage45_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Percent population aged 45 and over</strong><br />' + (feature.properties['w_over45'] !== null ? Autolinker.link(String(feature.properties['w_over45'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Percentoverage45_1_0(feature) {
+            if (feature.properties['w_over45'] >= 0.000000 && feature.properties['w_over45'] <= 0.650000 ) {
+                return {
+                pane: 'pane_Percentoverage45_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(204,204,218,1.0)',
+            }
+            }
+            if (feature.properties['w_over45'] >= 0.650000 && feature.properties['w_over45'] <= 1.300000 ) {
+                return {
+                pane: 'pane_Percentoverage45_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(171,188,225,1.0)',
+            }
+            }
+            if (feature.properties['w_over45'] >= 1.300000 && feature.properties['w_over45'] <= 1.950000 ) {
+                return {
+                pane: 'pane_Percentoverage45_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(103,169,207,1.0)',
+            }
+            }
+            if (feature.properties['w_over45'] >= 1.950000 && feature.properties['w_over45'] <= 2.600000 ) {
+                return {
+                pane: 'pane_Percentoverage45_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(28,144,153,1.0)',
+            }
+            }
+            if (feature.properties['w_over45'] >= 2.600000 && feature.properties['w_over45'] <= 3.250000 ) {
+                return {
+                pane: 'pane_Percentoverage45_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(1,108,89,1.0)',
+            }
+            }
+        }
+        map.createPane('pane_Percentoverage45_1');
+        map.getPane('pane_Percentoverage45_1').style.zIndex = 401;
+        map.getPane('pane_Percentoverage45_1').style['mix-blend-mode'] = 'normal';
+        var layer_Percentoverage45_1 = new L.geoJson(json_Percentoverage45_1, {
+            attribution: '',
+            pane: 'pane_Percentoverage45_1',
+            onEachFeature: pop_Percentoverage45_1,
+            style: style_Percentoverage45_1_0,
+        });
+        bounds_group.addLayer(layer_Percentoverage45_1);
+        function pop_Genderidentity_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Proportion population identifying male</strong><br />' + (feature.properties['w_male'] !== null ? Autolinker.link(String(feature.properties['w_male'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Proporition population identifying female</strong><br />' + (feature.properties['w_female'] !== null ? Autolinker.link(String(feature.properties['w_female'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+        function style_Genderidentity_2_0(feature) {
+            var context = {
+                feature: feature,
+                variables: {}
+            };
+            // Start of if blocks and style check logic
+            if (Genderidentity_2rule0_eval_expression(context)) {
+                  return {
+                pane: 'pane_Genderidentity_2',
+                opacity: 1,
+                color: 'rgba(137,137,137,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(170,128,232,1.0)',
+            };
+                }
+                else if (Genderidentity_2rule1_eval_expression(context)) {
+                  return {
+                pane: 'pane_Genderidentity_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(206,206,206,1.0)',
+            };
+                }
+                else if (Genderidentity_2rule2_eval_expression(context)) {
+                  return {
+                pane: 'pane_Genderidentity_2',
+                opacity: 1,
+                color: 'rgba(137,137,137,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(166,233,174,1.0)',
+            };
+                }
+            else {
+                return {fill: false, stroke: false};
+            }
+        }
+        map.createPane('pane_Genderidentity_2');
+        map.getPane('pane_Genderidentity_2').style.zIndex = 402;
+        map.getPane('pane_Genderidentity_2').style['mix-blend-mode'] = 'normal';
+        var layer_Genderidentity_2 = new L.geoJson(json_Genderidentity_2, {
+            attribution: '',
+            pane: 'pane_Genderidentity_2',
+            onEachFeature: pop_Genderidentity_2,
+            style: style_Genderidentity_2_0,
+        });
+        bounds_group.addLayer(layer_Genderidentity_2);
+        map.addLayer(layer_Genderidentity_2);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'Gender identity<br /><table><tr><td style="text-align: center;"><img src="legend/Genderidentity_2_Majoritymale0.png" /></td><td>Majority male</td></tr><tr><td style="text-align: center;"><img src="legend/Genderidentity_2_Equal1.png" /></td><td>Equal</td></tr><tr><td style="text-align: center;"><img src="legend/Genderidentity_2_Majorityfemale2.png" /></td><td>Majority female</td></tr></table>': layer_Genderidentity_2,'Percent over age 45<br /><table><tr><td style="text-align: center;"><img src="legend/Percentoverage45_1_0000650.png" /></td><td> 0.00 - 0.65 </td></tr><tr><td style="text-align: center;"><img src="legend/Percentoverage45_1_0651301.png" /></td><td> 0.65 - 1.30 </td></tr><tr><td style="text-align: center;"><img src="legend/Percentoverage45_1_1301952.png" /></td><td> 1.30 - 1.95 </td></tr><tr><td style="text-align: center;"><img src="legend/Percentoverage45_1_1952603.png" /></td><td> 1.95 - 2.60 </td></tr><tr><td style="text-align: center;"><img src="legend/Percentoverage45_1_2603254.png" /></td><td> 2.60 - 3.25 </td></tr></table>': layer_Percentoverage45_1,"mapbox": layer_mapbox_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
